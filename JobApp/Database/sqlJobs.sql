@@ -15,9 +15,9 @@
 -- SELECT * FROM JobAppsSQL;
 
 
-CREATE FUNCTION GetJobStatus(job_name TEXT) RETURNS TEXT AS $$
-BEGIN
-    DECLARE job_status TEXT;
-    SELECT status INTO job_status FROM JobAppsSQL WHERE job_name = job_name;
-    RETURN job_status;
-END;$$ LANGUAGE plpgsql;
+-- CREATE FUNCTION GetJobStatus(job_name TEXT) RETURNS TEXT AS $$
+-- BEGIN
+--     DECLARE job_status TEXT;
+--     SELECT status INTO job_status FROM JobAppsSQL WHERE job_name = job_name;
+--     RETURN job_status;
+-- END;$$ LANGUAGE plpgsql;
