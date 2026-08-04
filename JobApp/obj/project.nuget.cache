@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gvLOQI/IlTU=",
+  "dgSpecHash": "mNHnmJB9Eb4=",
   "success": true,
-  "projectFilePath": "/home/chris/Projects/JobApp/JobApp.csproj",
+  "projectFilePath": "/home/chris/Projects/JobApplicationTracker/JobApp/JobApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

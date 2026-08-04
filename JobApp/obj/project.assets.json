@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/chris/Projects/JobApp/JobApp.csproj",
+      "projectUniqueName": "/home/chris/Projects/JobApplicationTracker/JobApp/JobApp.csproj",
       "projectName": "JobApp",
-      "projectPath": "/home/chris/Projects/JobApp/JobApp.csproj",
+      "projectPath": "/home/chris/Projects/JobApplicationTracker/JobApp/JobApp.csproj",
       "packagesPath": "/home/chris/.nuget/packages/",
-      "outputPath": "/home/chris/Projects/JobApp/obj/",
+      "outputPath": "/home/chris/Projects/JobApplicationTracker/JobApp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/chris/.nuget/NuGet/NuGet.Config"
