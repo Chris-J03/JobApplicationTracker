@@ -1,4 +1,5 @@
 ﻿using System;
+using JobApp;
 namespace JobApp
 {
     class Program
@@ -6,7 +7,7 @@ namespace JobApp
         static void Main(string[] args)
         {
             // Call the Run method to begin the program's execution and display the menu options to the user
-            Menu.Run();   
+            Interface.Menu.Run();   
         }
     }
 }
