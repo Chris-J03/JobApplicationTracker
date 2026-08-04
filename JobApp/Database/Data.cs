@@ -4,7 +4,7 @@ using System.Text;
 namespace JobApp.Database;
 using Microsoft.Data.Sqlite;
 
-public class Database
+public class SQLData
 {
     private readonly string connectionString = "Data Source=jobs.db";
 
