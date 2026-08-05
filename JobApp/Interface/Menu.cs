@@ -5,6 +5,7 @@ namespace JobApp.Interface
 {
     static class Menu
     {
+        // Method to run the menu loop and handle user input
         public static void Run()
         {
             bool running = true;
@@ -15,6 +16,7 @@ namespace JobApp.Interface
                 running = handleInput(input);
             }
         }
+        // Method to display the menu options to the user
         static void DisplayMenu()
         {
             // Options menu for the application list management program
@@ -36,6 +38,7 @@ namespace JobApp.Interface
             }
             return input;
         }
+        // Method to handle the user's input and perform the corresponding action
         static bool handleInput(int input)
         {
             switch (input)
