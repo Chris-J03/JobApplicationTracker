@@ -8,11 +8,13 @@ public class SQLData
 {
     private readonly string connectionString = "Data Source=jobs.db";
 
+    // Method to get a connection to the SQLite database
     public SqliteConnection GetConnection()
     {
         return new SqliteConnection(connectionString);
     }
 
+    // Method to initialise the database and create the Jobs table if it doesn't exist
     public void Initialise()
     {
         using SqliteConnection connection = GetConnection();

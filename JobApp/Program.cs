@@ -10,6 +10,7 @@ namespace JobApp
         {
             SQLData database = new SQLData();
 
+            // Initialise the database and establish a connection to it
             database.Initialise();
             database.GetConnection();
 
