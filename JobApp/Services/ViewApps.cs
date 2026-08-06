@@ -23,17 +23,26 @@ namespace JobApp
             using SqliteCommand command = new SqliteCommand(sql, connection);
             using SqliteDataReader reader = command.ExecuteReader();
 
-            List<JobApp.Model.Job> jobs = new();
+            List<Model.Job> jobs = new();
 
             while (reader.Read())
             {
-                jobs.Add(new JobApp.Model.Job
+                jobs.Add(new Model.Job
                 {
                     Id = reader.GetInt32(0),
                     JobName = reader.GetString(1),
                     Company = reader.GetString(2),
                     Status = reader.GetString(3)
                 });
+            }
+
+            foreach (Model.Job job in jobs)
+            {
+                Console.WriteLine($"ID: {job.Id}");
+                Console.WriteLine($"Job: {job.JobName}");
+                Console.WriteLine($"Company: {job.Company}");
+                Console.WriteLine($"Status: {job.Status}");
+                Console.WriteLine("----------------------");
             }
         }
     }
