@@ -13,9 +13,6 @@ namespace JobApp
         {
             Console.WriteLine("Viewing all applications...");
 
-            // Logic to retrieve and display applications goes here
-            // This can be a synchronous operation since it is just reading data
-
             using SqliteConnection connection = new SqliteConnection("Data Source=Database/Jobs.db");
             connection.Open();
             
