@@ -1,3 +1,5 @@
+using Microsoft.Data.Sqlite;
+
 namespace JobApp
 {
     public class AddApp
@@ -16,9 +18,33 @@ namespace JobApp
             string? position = Console.ReadLine();
             Console.WriteLine("Please enter the status:");
             string? status = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(company) || string.IsNullOrWhiteSpace(position) || string.IsNullOrWhiteSpace(status))
+            {
+                Console.WriteLine("Error: Company, position, and status are required fields. Please try again.");
+                return;
+            }
+            AddApplicationToDatabase(company ?? "", position ?? "", status ?? "");
+            Console.WriteLine("Application added successfully!");
+
         }
         
-        
+        public void AddApplicationToDatabase(string company, string position, string status)
+        {
+            using SqliteConnection connection = new SqliteConnection("Data Source=Database/Jobs.db");
+            connection.Open();
+
+            string sql = @"
+                INSERT INTO Jobs (Company, Position, Status)
+                VALUES (@Company, @Position, @Status);";
+
+            using SqliteCommand command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue("@Company", company);
+            command.Parameters.AddWithValue("@Position", position);
+            command.Parameters.AddWithValue("@Status", status);
+
+            command.ExecuteNonQuery();
+        }
     
     }
 }

@@ -46,6 +46,8 @@ namespace JobApp.Interface
                 case 1:
                     Console.WriteLine("You selected option 1: Add application to list");
                     // Call method to add application
+                    AddApp addApp = new AddApp();
+                    addApp.AddApplication();
                     break;
                 case 2:
                     Console.WriteLine("You selected option 2: Remove application from list");
