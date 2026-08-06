@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
+using System.Runtime.Serialization;
 namespace JobApp
 {
     public class ViewApps
