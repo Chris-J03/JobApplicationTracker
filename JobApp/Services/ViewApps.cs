@@ -30,8 +30,8 @@ namespace JobApp
                 jobs.Add(new Model.Job
                 {
                     Id = reader.GetInt32(0),
-                    JobName = reader.GetString(1),
-                    Company = reader.GetString(2),
+                    Company = reader.GetString(1),
+                    Position = reader.GetString(2),
                     Status = reader.GetString(3)
                 });
             }
@@ -39,7 +39,7 @@ namespace JobApp
             foreach (Model.Job job in jobs)
             {
                 Console.WriteLine($"ID: {job.Id}");
-                Console.WriteLine($"Job: {job.JobName}");
+                Console.WriteLine($"Position: {job.Position}");
                 Console.WriteLine($"Company: {job.Company}");
                 Console.WriteLine($"Status: {job.Status}");
                 Console.WriteLine("----------------------");
