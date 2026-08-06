@@ -54,6 +54,8 @@ namespace JobApp.Interface
                 case 3:
                     Console.WriteLine("You selected option 3: View applications in list");
                     // Call method to view applications
+                    ViewApps viewApps = new ViewApps();
+                    viewApps.ViewApplications();
                     break;
                 case 4:
                     Console.WriteLine("Exiting the program. Goodbye!");

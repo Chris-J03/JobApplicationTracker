@@ -6,7 +6,7 @@ using Microsoft.Data.Sqlite;
 
 public class SQLData
 {
-    private readonly string connectionString = "Data Source=jobs.db";
+    private readonly string connectionString = "Data Source=Database/Jobs.db";
 
     // Method to get a connection to the SQLite database
     public SqliteConnection GetConnection()
