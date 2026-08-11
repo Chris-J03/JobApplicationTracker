@@ -43,7 +43,11 @@ namespace JobApp
                 Console.WriteLine($"Company: {job.Company}");
                 Console.WriteLine($"Status: {job.Status}");
                 Console.WriteLine("----------------------");
+                System.Threading.Thread.Sleep(4000);
             }
+
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
         }
     }
 }
