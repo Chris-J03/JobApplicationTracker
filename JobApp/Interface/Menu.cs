@@ -102,6 +102,8 @@ namespace JobApp.Interface
         {
             _console.WriteLine("You selected option 2: Remove application from list");
             // TODO: implement RemoveApp class and removal logic
+            DeleteApp deleteApp = new DeleteApp();
+            deleteApp.DeleteApplication();
         }
 
         private void ViewApplications()
