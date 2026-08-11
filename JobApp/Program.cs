@@ -15,7 +15,8 @@ namespace JobApp
             database.GetConnection();
 
             // Call the Run method to begin the program's execution and display the menu options to the user
-            Menu.Run();   
+            Menu menu = new Menu();
+            menu.Run();
         }
     }
 }

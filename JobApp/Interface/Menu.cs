@@ -1,72 +1,119 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+
 namespace JobApp.Interface
 {
-    static class Menu
+    public interface IConsole
     {
-        // Method to run the menu loop and handle user input
-        public static void Run()
+        string? ReadLine();
+        void WriteLine(string? message);
+    }
+
+    public class ConsoleWrapper : IConsole
+    {
+        public string? ReadLine() => Console.ReadLine();
+        public void WriteLine(string? message) => Console.WriteLine(message);
+    }
+
+    public enum MenuOption
+    {
+        Invalid = 0,
+        AddApplication = 1,
+        RemoveApplication = 2,
+        ViewApplications = 3,
+        Exit = 4
+    }
+
+    public class Menu
+    {
+        private readonly IConsole _console;
+        private readonly Dictionary<MenuOption, Action> _actions;
+
+        public Menu(IConsole? console = null)
+        {
+            _console = console ?? new ConsoleWrapper();
+            _actions = new Dictionary<MenuOption, Action>
+            {
+                { MenuOption.AddApplication, AddApplication },
+                { MenuOption.RemoveApplication, RemoveApplication },
+                { MenuOption.ViewApplications, ViewApplications },
+                { MenuOption.Exit, ExitApplication }
+            };
+        }
+
+        public void Run()
         {
             bool running = true;
+
             while (running)
             {
                 DisplayMenu();
-                int input = takeInput();
-                running = handleInput(input);
+                MenuOption choice = ReadMenuChoice();
+                running = HandleChoice(choice);
             }
-        }
-        // Method to display the menu options to the user
-        static void DisplayMenu()
-        {
-            // Options menu for the application list management program
-            Console.WriteLine("Please select from the list of options below:");
-
-            Console.WriteLine("1. Add application to list");
-            Console.WriteLine("2. Remove application from list");
-            Console.WriteLine("3. View applications in list");
-            Console.WriteLine("4. Exit");
         }
 
-        public static int takeInput()
+        private void DisplayMenu()
         {
-            string? inputLine = Console.ReadLine();
-            if (!int.TryParse(inputLine, out int input))
-            {
-                Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
-                return -1;
-            }
-            return input;
+            _console.WriteLine("Please select from the list of options below:");
+            _console.WriteLine("1. Add application to list");
+            _console.WriteLine("2. Remove application from list");
+            _console.WriteLine("3. View applications in list");
+            _console.WriteLine("4. Exit");
         }
-        // Method to handle the user's input and perform the corresponding action
-        static bool handleInput(int input)
+
+        private MenuOption ReadMenuChoice()
         {
-            switch (input)
+            while (true)
             {
-                case 1:
-                    Console.WriteLine("You selected option 1: Add application to list");
-                    // Call method to add application
-                    AddApp addApp = new AddApp();
-                    addApp.AddApplication();
-                    break;
-                case 2:
-                    Console.WriteLine("You selected option 2: Remove application from list");
-                    // Call method to remove application
-                    break;
-                case 3:
-                    Console.WriteLine("You selected option 3: View applications in list");
-                    // Call method to view applications
-                    ViewApps viewApps = new ViewApps();
-                    viewApps.ViewApplications();
-                    break;
-                case 4:
-                    Console.WriteLine("Exiting the program. Goodbye!");
-                    return false; // Exit the loop and terminate the program
-                default:
-                    Console.WriteLine("Invalid selection. Please try again.");
-                    break;
+                string? inputLine = _console.ReadLine();
+
+                if (!int.TryParse(inputLine, out int numericChoice) ||
+                    !Enum.IsDefined(typeof(MenuOption), numericChoice))
+                {
+                    _console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
+                    continue;
+                }
+
+                return (MenuOption)numericChoice;
             }
-            return true; // Continue running the menu
+        }
+
+        private bool HandleChoice(MenuOption choice)
+        {
+            if (_actions.TryGetValue(choice, out Action action))
+            {
+                action();
+                return choice != MenuOption.Exit;
+            }
+
+            _console.WriteLine("Invalid selection. Please try again.");
+            return true;
+        }
+
+        private void AddApplication()
+        {
+            _console.WriteLine("You selected option 1: Add application to list");
+            AddApp addApp = new AddApp();
+            addApp.AddApplication();
+        }
+
+        private void RemoveApplication()
+        {
+            _console.WriteLine("You selected option 2: Remove application from list");
+            // TODO: implement RemoveApp class and removal logic
+        }
+
+        private void ViewApplications()
+        {
+            _console.WriteLine("You selected option 3: View applications in list");
+            ViewApps viewApps = new ViewApps();
+            viewApps.ViewApplications();
+        }
+
+        private void ExitApplication()
+        {
+            _console.WriteLine("Exiting the program. Goodbye!");
         }
     }
 }
