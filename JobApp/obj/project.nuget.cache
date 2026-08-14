@@ -1,15 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "oMGfEaoroP0=",
+  "dgSpecHash": "XMUl6hPt3Q8=",
   "success": true,
   "projectFilePath": "/home/chris/Projects/JobApplicationTracker/JobApp/JobApp.csproj",
   "expectedPackageFiles": [
+    "/home/chris/.nuget/packages/bouncycastle.cryptography/2.6.2/bouncycastle.cryptography.2.6.2.nupkg.sha512",
+    "/home/chris/.nuget/packages/mailkit/4.17.0/mailkit.4.17.0.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.data.sqlite/10.0.10/microsoft.data.sqlite.10.0.10.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.data.sqlite.core/10.0.10/microsoft.data.sqlite.core.10.0.10.nupkg.sha512",
+    "/home/chris/.nuget/packages/mimekit/4.17.0/mimekit.4.17.0.nupkg.sha512",
     "/home/chris/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.11/sqlitepclraw.bundle_e_sqlite3.2.1.11.nupkg.sha512",
     "/home/chris/.nuget/packages/sqlitepclraw.core/2.1.11/sqlitepclraw.core.2.1.11.nupkg.sha512",
     "/home/chris/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
-    "/home/chris/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512"
+    "/home/chris/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.11/sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
+    "/home/chris/.nuget/packages/system.security.cryptography.pkcs/10.0.0/system.security.cryptography.pkcs.10.0.0.nupkg.sha512"
   ],
   "logs": [
     {
