@@ -2,11 +2,12 @@
 using JobApp.Interface;
 using JobApp.Database;
 using Microsoft.Data.Sqlite;
+using JobSearchEmailReader.Services;
 namespace JobApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             SQLData database = new SQLData();
 
@@ -17,6 +18,26 @@ namespace JobApp
             // Call the Run method to begin the program's execution and display the menu options to the user
             Menu menu = new Menu();
             menu.Run();
+
+            
+
+        const string clientId = "YOUR_CLIENT_ID";
+        const string emailAddress = "YOUR_OUTLOOK_EMAIL";
+
+        var emailService = new EmailService(
+            clientId,
+            emailAddress
+        );
+
+        try
+        {
+            await emailService.TestConnectionAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Something went wrong:");
+            Console.WriteLine(ex.Message);
+        }
         }
     }
 }
