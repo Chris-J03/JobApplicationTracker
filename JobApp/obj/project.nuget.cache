@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7kcmsDQ1ARA=",
+  "dgSpecHash": "i+mLV1KZ67w=",
   "success": true,
   "projectFilePath": "/home/chris/Projects/JobApplicationTracker/JobApp/JobApp.csproj",
   "expectedPackageFiles": [
@@ -21,7 +21,7 @@
     "/home/chris/.nuget/packages/microsoft.extensions.primitives/10.0.3/microsoft.extensions.primitives.10.0.3.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.graph/6.5.0/microsoft.graph.6.5.0.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.graph.core/4.0.1/microsoft.graph.core.4.0.1.nupkg.sha512",
-    "/home/chris/.nuget/packages/microsoft.identity.client/4.83.1/microsoft.identity.client.4.83.1.nupkg.sha512",
+    "/home/chris/.nuget/packages/microsoft.identity.client/4.87.0/microsoft.identity.client.4.87.0.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.identity.client.extensions.msal/4.83.1/microsoft.identity.client.extensions.msal.4.83.1.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.identitymodel.abstractions/8.18.0/microsoft.identitymodel.abstractions.8.18.0.nupkg.sha512",
     "/home/chris/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.18.0/microsoft.identitymodel.jsonwebtokens.8.18.0.nupkg.sha512",

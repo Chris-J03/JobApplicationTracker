@@ -1,22 +1,80 @@
 // Service that will access user email and read the content of the email to extract job application information
 // This will be an automatic service that will update database with new job applications from the user's email
-using Microsoft.Data.Sqlite;
 using MailKit.Net.Imap;
-using MailKit;
-using MimeKit;
+using MailKit.Security;
+using Microsoft.Identity.Client;
 
-namespace JobApp
+namespace JobSearchEmailReader.Services;
+ // 4b0cd060-1ab7-4e31-8b56-3f537deb2963
+ 
+public class EmailService
 {
-    public class EmailReader
-    {
-        // Method to read emails and extract job application information
-        public void ReadEmails()
-        {
-            Console.WriteLine("Reading emails for job applications...");
-            // Logic to read emails goes here
-            // For example, you can use MailKit to connect to the user's email account and read the emails
-            // You can then extract the relevant information from the email content and update the database with new job applications
+    private readonly string _clientId;
+    private readonly string _emailAddress;
 
+    public EmailService(string clientId, string emailAddress)
+    {
+        _clientId = clientId;
+        _emailAddress = emailAddress;
+    }
+
+    private async Task<AuthenticationResult> GetAccessTokenAsync()
+    {
+        var options = new PublicClientApplicationOptions
+        {
+            ClientId = _clientId,
+            TenantId = "consumers",
+            RedirectUri = "http://localhost"
+        };
+
+        var app = PublicClientApplicationBuilder
+            .CreateWithApplicationOptions(options)
+            .Build();
+
+        string[] scopes =
+        [
+            "email",
+            "offline_access",
+            "https://outlook.office.com/IMAP.AccessAsUser.All"
+        ];
+
+        var accounts = await app.GetAccountsAsync();
+
+        try
+        {
+            return await app
+                .AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                .ExecuteAsync();
         }
+        catch (MsalUiRequiredException)
+        {
+            return await app
+                .AcquireTokenInteractive(scopes)
+                .ExecuteAsync();
+        }
+    }
+
+    public async Task TestConnectionAsync()
+    {
+        var authenticationResult = await GetAccessTokenAsync();
+
+        using var client = new ImapClient();
+
+        await client.ConnectAsync(
+            "outlook.office365.com",
+            993,
+            SecureSocketOptions.SslOnConnect
+        );
+
+        var oauth2 = new SaslMechanismOAuth2(
+            authenticationResult.Account.Username,
+            authenticationResult.AccessToken
+        );
+
+        await client.AuthenticateAsync(oauth2);
+
+        Console.WriteLine("Successfully connected to Outlook!");
+
+        await client.DisconnectAsync(true);
     }
 }

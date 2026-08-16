@@ -60,6 +60,10 @@
             "Microsoft.Graph": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[4.87.0, )"
             }
           },
           "imports": [
