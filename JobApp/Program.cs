@@ -31,7 +31,7 @@ namespace JobApp
 
         try
         {
-            await emailService.TestConnectionAsync();
+            await emailService.ReadInboxAsync();
         }
         catch (Exception ex)
         {
