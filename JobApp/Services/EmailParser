@@ -1,0 +1,39 @@
+public class EmailParser
+{
+    public JobApplication? Parse(EmailData email)
+    {
+        // Split emails into useful data to be added to database
+        // For example, extract company name, position, and status from the email body or subject
+        // This is a placeholder implementation and should be replaced with actual parsing logic
+
+        if (!IsJobApplicationEmail(email))
+        {
+            return null;
+        }
+
+        return new Job
+        {
+            EmailId = email.Id,
+            Status = "Applied"
+        };
+            return null;
+        }
+    private bool IsJobApplicationEmail(EmailData email)
+    {
+        string content =
+            $"{email.Subject} {email.Body}".ToLower();
+
+        string[] keywords =
+        {
+            "application",
+            "applied",
+            "job application",
+            "thank you for applying",
+            "application received",
+            "application submitted"
+        };
+
+        return keywords.Any(keyword =>
+            content.Contains(keyword));
+    }
+}
