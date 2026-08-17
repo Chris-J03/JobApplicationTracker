@@ -21,8 +21,8 @@ namespace JobApp
 
             
 
-        const string clientId = "YOUR_CLIENT_ID";
-        const string emailAddress = "YOUR_OUTLOOK_EMAIL";
+        const string clientId = "";
+        const string emailAddress = "chris.j031@outlook.com";
 
         var emailService = new EmailService(
             clientId,
