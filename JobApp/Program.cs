@@ -41,7 +41,17 @@ namespace JobApp
 
             try
             {
-                await emailService.ReadInboxAsync();
+                var emails = await emailService.ReadInboxAsync();
+
+                foreach (var email in emails)
+                {
+                    Console.WriteLine("--------------------------------");
+                    Console.WriteLine($"From: {email.Sender}");
+                    Console.WriteLine($"Subject: {email.Subject}");
+                    Console.WriteLine($"Date: {email.Date}");
+                    Console.WriteLine();
+                    Console.WriteLine(email.Body);
+                }
             }
             catch (Exception ex)
             {

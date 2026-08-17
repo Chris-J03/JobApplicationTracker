@@ -1,9 +1,11 @@
 // Service that will access user email and read the content of the email to extract job application information
 // This will be an automatic service that will update database with new job applications from the user's email
+using JobApp.Model;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Security;
 using Microsoft.Identity.Client;
+
 
 namespace JobSearchEmailReader.Services;
 
@@ -54,7 +56,7 @@ public class EmailService
         }
     }
 
-    public async Task ReadInboxAsync()
+    public async Task<List<EmailData>> ReadInboxAsync()
     {
         var authenticationResult = await GetAccessTokenAsync();
 
@@ -73,26 +75,29 @@ public class EmailService
 
         await client.AuthenticateAsync(oauth2);
 
-        Console.WriteLine("Successfully connected to Outlook!");
-
         var inbox = client.Inbox;
 
         await inbox.OpenAsync(FolderAccess.ReadOnly);
 
-        Console.WriteLine($"Emails in inbox: {inbox.Count}");
-        Console.WriteLine();
+        var emails = new List<EmailData>();
 
         for (int i = 0; i < inbox.Count; i++)
         {
             var message = await inbox.GetMessageAsync(i);
 
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine($"From: {message.From}");
-            Console.WriteLine($"Subject: {message.Subject}");
-            Console.WriteLine($"Date: {message.Date}");
-            Console.WriteLine();
+            var email = new EmailData
+            {
+                Sender = message.From.ToString(),
+                Subject = message.Subject ?? "",
+                Body = message.TextBody ?? "",
+                Date = message.Date
+            };
+
+            emails.Add(email);
         }
 
         await client.DisconnectAsync(true);
+
+        return emails;
     }
 }
