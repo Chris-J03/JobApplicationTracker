@@ -28,7 +28,8 @@ public class SQLData
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
             Company TEXT NOT NULL,
             Position TEXT NOT NULL,
-            Status TEXT NOT NULL
+            Status TEXT NOT NULL,
+            EmailId TEXT UNIQUE
         );
         ";
 

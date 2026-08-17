@@ -4,6 +4,7 @@ using JobApp.Database;
 using Microsoft.Data.Sqlite;
 using JobSearchEmailReader.Services;
 using Microsoft.Extensions.Configuration;
+using JobApp.Model;
 namespace JobApp
 {
     class Program
@@ -15,6 +16,8 @@ namespace JobApp
             // Initialise the database and establish a connection to it
             database.Initialise();
             database.GetConnection();
+
+            JobRepository repository = new(database);
 
             // Call the Run method to begin the program's execution and display the menu options to the user
             Menu menu = new Menu();
