@@ -57,6 +57,10 @@
               "target": "Package",
               "version": "[10.0.10, )"
             },
+            "Microsoft.Extensions.Configuration.UserSecrets": {
+              "target": "Package",
+              "version": "[10.0.11, )"
+            },
             "Microsoft.Graph": {
               "target": "Package",
               "version": "[6.5.0, )"

@@ -3,6 +3,7 @@ using JobApp.Interface;
 using JobApp.Database;
 using Microsoft.Data.Sqlite;
 using JobSearchEmailReader.Services;
+using Microsoft.Extensions.Configuration;
 namespace JobApp
 {
     class Program
@@ -19,25 +20,34 @@ namespace JobApp
             Menu menu = new Menu();
             menu.Run();
 
-            
+            var configuration = new ConfigurationBuilder()
+                .AddUserSecrets<Program>()
+                .Build();
 
-        const string clientId = "";
-        const string emailAddress = "chris.j031@outlook.com";
+            var clientId = configuration["Outlook:ClientId"];
+            var emailAddress = configuration["Outlook:EmailAddress"];
 
-        var emailService = new EmailService(
-            clientId,
-            emailAddress
-        );
+            if (string.IsNullOrWhiteSpace(clientId) ||
+                string.IsNullOrWhiteSpace(emailAddress))
+            {
+                Console.WriteLine("Outlook configuration is missing.");
+                return;
+            }
 
-        try
-        {
-            await emailService.ReadInboxAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Something went wrong:");
-            Console.WriteLine(ex.Message);
-        }
+            var emailService = new EmailService(
+                clientId,
+                emailAddress
+            );
+
+            try
+            {
+                await emailService.ReadInboxAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Something went wrong:");
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
